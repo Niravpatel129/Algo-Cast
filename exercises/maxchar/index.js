@@ -5,6 +5,17 @@
 // maxChar("abcccccccd") === "c"
 // maxChar("apple 1231111") === "1"
 
-function maxChar(str) {}
+function maxChar(str) {
+  let map = {};
+  let biggestChar = '';
+
+  str.split('').forEach((v) => (map[v] ? map[v]++ : (map[v] = 1)));
+
+  Object.entries(map).forEach(([key, value]) => {
+    if (!map[biggestChar] || value > map[biggestChar]) biggestChar = key;
+  });
+
+  return biggestChar;
+}
 
 module.exports = maxChar;
